@@ -32,6 +32,7 @@ class TodoInput extends React.Component {
   }
 
   _onChange (event) {
+    console.log(event.target.value);
     this.setState({
       value: event.target.value
     });
@@ -40,9 +41,10 @@ class TodoInput extends React.Component {
   render () {
     return (
       <input
+        type="text"
         className={this.props.className}
         placeholder={this.props.placeholder}
-        value={this.props.value}
+        value={this.state.value}
         onChange={this._onChange.bind(this)}
         onKeyDown={this._onKeyDown.bind(this)}
       />
