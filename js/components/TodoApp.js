@@ -31,6 +31,16 @@ class TodoApp extends React.Component {
     }
   }
 
+  _onDelete (todoItem) {
+    var todos = this.state.todos.filter(todo => {
+      return todo.id !== todoItem.id;
+    });
+
+    this.setState({
+      todos: todos
+    })
+  }
+
   render () {
     console.log("NEW TODO APP");
     return (
@@ -43,6 +53,7 @@ class TodoApp extends React.Component {
 
         <TodoList 
           todos={ this.state.todos }
+          onDelete={ this._onDelete.bind(this) }
         />
       </div>
     )

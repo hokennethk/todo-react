@@ -32,8 +32,11 @@ class TodoItem extends React.Component {
     })
   }
 
-  removeHandler () {
-    //TODO add handler
+  removeHandler (event) {
+    // do default delete stuff
+    console.log(this.state.todo);
+    this.props.onDelete(this.state.todo);
+    // custom actions
   }
 
   render () {
@@ -53,7 +56,7 @@ class TodoItem extends React.Component {
         {editTodo}
         { todo.title }
         <button onClick={ this.editHandler.bind(this) }>edit</button>
-        <button>remove</button>
+        <button onClick={ this.removeHandler.bind(this) }>remove</button>
       </li>
     );
   }

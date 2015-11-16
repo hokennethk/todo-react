@@ -9,7 +9,8 @@ class TodoList extends React.Component {
     <ul>
       { this.props.todos
         .map(todo => <TodoItem key={todo.id}
-                                todo={todo} />) }
+                               todo={todo} 
+                               onDelete={ this.props.onDelete.bind(this) }/>) }
     </ul>
     );
   }
