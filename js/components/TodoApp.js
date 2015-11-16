@@ -2,16 +2,30 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
+import TodoStore from '../stores/TodoStore';
+import TodoActions from '../actions/TodoActions';
 
 class TodoApp extends React.Component {
-  constructor (props) {
-    super(props);
-
+  constructor () {
+    super();
+    TodoActions.getTodos()
     // change this out when we use a store
     this.state = {
-      todos: props.todos
+      todos: TodoStore.getState()
     }
     this.idCounter = 4;
+  }
+
+  componentDidMount() {
+    TodoStore.addChangeListener(this._onChange.bind(this));
+  }
+
+  componentWillUnmount() {
+    TodoStore.removeChangeListener(this._onChange.bind(this));
+  }
+
+  _onChange() {
+    this.setState(TodoStore.getState());
   }
 
   _onSave (text) {
@@ -59,10 +73,5 @@ class TodoApp extends React.Component {
     )
   }
 }
-
-TodoApp.propTypes = {
-  todos: React.PropTypes.array.isRequired
-}
-
 
 export default TodoApp;

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import TodoApp from './components/TodoApp';
 
 
-
+// Initialize mock data
 var data = [
   {
     id: 1,
@@ -19,7 +19,9 @@ var data = [
   }
 ];
 
+localStorage.setItem('todos', JSON.stringify(data));
+
 ReactDOM.render(
-  <TodoApp todos={ data }/>,
+  <TodoApp />,
   document.getElementById('app')
 );
