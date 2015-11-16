@@ -18,7 +18,8 @@ class TodoInput extends React.Component {
 
   _save () {
     // TODO
-    // 
+    console.log('saving');
+    this.props.onSave(this.state.value)
     this.setState({
       value: ''
     })
@@ -47,6 +48,7 @@ class TodoInput extends React.Component {
         value={this.state.value}
         onChange={this._onChange.bind(this)}
         onKeyDown={this._onKeyDown.bind(this)}
+        onBlur={this._save.bind(this)}
       />
     )
   }
@@ -55,7 +57,8 @@ class TodoInput extends React.Component {
 TodoInput.propTypes = {
   className: React.PropTypes.string,
   placeholder: React.PropTypes.string,
-  value: React.PropTypes.string
+  value: React.PropTypes.string,
+  onSave: React.PropTypes.func.isRequired
 }
 
 export default TodoInput

@@ -7,18 +7,15 @@ import TodoApp from './components/TodoApp';
 var data = [
   {
     id: 1,
-    title: "task 1",
-    createdAt: new Date() 
+    title: "task 1" 
   },
   {
     id: 2,
-    title: "task 2",
-    createdAt: new Date() 
+    title: "task 2" 
   },
   {
     id: 3,
-    title: "task 3",
-    createdAt: new Date() 
+    title: "task 3" 
   }
 ];
 
