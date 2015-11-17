@@ -58,7 +58,6 @@ class TodoItem extends React.Component {
 
     return (
       <li
-        onClick = { this._toggleComplete.bind(this) }
         className={classNames({
           editing: this.state.editMode
         }, 
@@ -71,7 +70,9 @@ class TodoItem extends React.Component {
             checked={todo.complete}
             onChange={ this._toggleComplete.bind(this) }
           />
-          <label className={classNames({editing:this.state.editMode})} >
+          <label className={classNames({editing:this.state.editMode})} 
+            onClick = { this._toggleComplete.bind(this) }
+          >
             { todo.title }
           </label>
           <button className= "btn btn__edit" onClick={ this.editHandler.bind(this) }>edit</button>
