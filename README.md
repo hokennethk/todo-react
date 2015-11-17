@@ -1,6 +1,7 @@
 # Todo-React
 
-A simple to-do app built in React. Mostly to learn React.
+A simple to-do app built in React and Flux.
+Project was done to explore React and the Flux architecture, using local storage as a means for persistent storage.
 
 
 ### Instructions
