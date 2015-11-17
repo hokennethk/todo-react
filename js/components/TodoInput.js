@@ -8,7 +8,7 @@ const ENTER_KEY_CODE = 13;
 class TodoInput extends React.Component {
 
   componentDidMount () {
-    this.refs.todoInput.getDOMNode().focus();
+    this.refs.todoInput.focus();
   }
 
   constructor (props) {
