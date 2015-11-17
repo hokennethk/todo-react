@@ -7,6 +7,10 @@ const ENTER_KEY_CODE = 13;
 
 class TodoInput extends React.Component {
 
+  componentDidMount () {
+    this.refs.todoInput.getDOMNode().focus();
+  }
+
   constructor (props) {
     super(props);
     this.state = {
@@ -37,6 +41,7 @@ class TodoInput extends React.Component {
   render () {
     return (
       <input
+        ref="todoInput"
         type="text"
         className={this.props.className}
         placeholder={this.props.placeholder}

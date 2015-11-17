@@ -36,12 +36,13 @@
   height: 2rem;
   line-height: 2rem;
   font-size: 1.7rem;
-
 }
 
 .input__edit {
   position: absolute;
   left: 0;
+  height: 1.3rem;
+  font-size: 1.1rem;
 }
 
 label.editing {
