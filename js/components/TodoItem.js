@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TodoInput from './TodoInput';
+import TodoActions from '../actions/TodoActions';
 
+import classNames from 'classnames';
 
 class TodoItem extends React.Component {
 
@@ -38,6 +40,10 @@ class TodoItem extends React.Component {
     // custom actions
   }
 
+  _toggleComplete (event) {
+    TodoActions.toggleComplete(this.state.todo);
+  }
+
   render () {
     var editTodo;
     var todo = this.state.todo;
@@ -46,15 +52,25 @@ class TodoItem extends React.Component {
       editTodo = <TodoInput 
                     value={ todo.title }
                     onSave={ this.saveHandler.bind(this) }
-                    />
+                  />
     }
 
     return (
-      <li>
-        {editTodo}
+      <li
+        className={classNames({
+          editing: this.state.editMode
+        })}
+      >
+        <input
+          className="toggle"
+          type="checkbox"
+          checked={todo.complete}
+          onChange={ this._toggleComplete.bind(this) }
+        />
         { todo.title }
         <button onClick={ this.editHandler.bind(this) }>edit</button>
         <button onClick={ this.removeHandler.bind(this) }>remove</button>
+        {editTodo}
       </li>
     );
   }

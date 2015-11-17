@@ -26,7 +26,8 @@ let TodoUtils = {
     var id = +new Date();
     var todo = {
       id,
-      title
+      title,
+      complete: false
     }
     return todo;
   },
@@ -50,7 +51,6 @@ let TodoUtils = {
     let todos =  getTodos();
     delete todos[id];
     setTodos(todos);
-    console.log("localstorage?", todos);
 
     // simulate async
     setTimeout(() => {

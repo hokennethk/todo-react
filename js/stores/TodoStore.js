@@ -16,11 +16,11 @@ let setTodos = (data) => {
   console.log('getting todos', _todos);
 }
 
-let create = (title) => {
-  var id = +new Date();
-  _todos[id] = {
-    id,
-    title
+let create = (todo) => {
+  _todos[todo.id] = {
+    id: todo.id,
+    title: todo.title,
+    complete: todo.complete
   };
 }
 
@@ -41,7 +41,6 @@ let update = (id, updatedTodo) => {
 let TodoStore = Object.assign({}, EventEmitter.prototype, {
 
   getState() {
-    console.log("todostroe", _todos);
     return _todos;
   },
 
@@ -70,12 +69,16 @@ AppDispatcher.register(function(action) {
       break;
 
     case TodoConstants.TODO_CREATE:
-      create(action.title);
+      create(action.todo);
       TodoStore.emitChange();
       break;
 
     case TodoConstants.TODO_DESTROY:
       destroy(action.id);
+      TodoStore.emitChange();
+      break;
+
+    case TodoConstants.TODO_TOGGLE:
       TodoStore.emitChange();
       break;
 

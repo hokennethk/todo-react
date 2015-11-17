@@ -33,10 +33,9 @@ let TodoActions = {
    */
   create: (title) => {
     var todo = TodoUtils.formatTodo(title);
-
     AppDispatcher.dispatch({
       actionType: TodoConstants.TODO_CREATE,
-      title
+      todo
     });
 
     // save to DB
@@ -67,6 +66,19 @@ let TodoActions = {
       id,
       title
     })
+  },
+
+  toggleComplete: (todo) => {
+    // toggle
+    todo.complete = !todo.complete;
+
+    AppDispatcher.dispatch({
+      actionType: TodoConstants.TODO_TOGGLE,
+      todo
+    })
+
+    // save to db
+    TodoUtils.saveTodo(todo);
   },
 
   // db stuff
