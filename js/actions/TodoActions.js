@@ -51,7 +51,9 @@ let TodoActions = {
     AppDispatcher.dispatch({
       actionType: TodoConstants.TODO_DESTROY,
       id
-    })
+    });
+
+    TodoUtils.deleteTodo(id);
   },
 
   /**

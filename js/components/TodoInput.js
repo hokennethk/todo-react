@@ -9,16 +9,12 @@ class TodoInput extends React.Component {
 
   constructor (props) {
     super(props);
-
-    console.log("in consturcto", this);
     this.state = {
       value: props.value || ''
     }
   }
 
   _save () {
-    // TODO
-    console.log('saving');
     this.props.onSave(this.state.value)
     this.setState({
       value: ''
@@ -33,7 +29,6 @@ class TodoInput extends React.Component {
   }
 
   _onChange (event) {
-    console.log(event.target.value);
     this.setState({
       value: event.target.value
     });

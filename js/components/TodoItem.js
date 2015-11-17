@@ -34,7 +34,6 @@ class TodoItem extends React.Component {
 
   removeHandler (event) {
     // do default delete stuff
-    console.log(this.state.todo);
     this.props.onDelete(this.state.todo);
     // custom actions
   }
@@ -48,7 +47,6 @@ class TodoItem extends React.Component {
                     value={ todo.title }
                     onSave={ this.saveHandler.bind(this) }
                     />
-      console.log(<editTodo/>);
     }
 
     return (

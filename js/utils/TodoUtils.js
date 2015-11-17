@@ -2,41 +2,62 @@ import TodoActions from '../actions/TodoActions';
 
 const localStorageKey = 'todos';
 
-let getAllTodos = () => {
-  let todos =  JSON.parse(localStorage.getItem(localStorageKey));
+let getTodos = () => {
+  let todos = JSON.parse(localStorage.getItem(localStorageKey));
   return todos;
 }
 
-/**
- * Creates a todo item for storage
- */
-let formatTodo = (title) => {
-  var id = +new Date();
-  var todo = {
-    id,
-    title
-  }
-  return todo;
-}
-
-/**
- * saves a todo to local storage
- */
-let saveTodo = (todo) => {
-  let todos =  JSON.parse(localStorage.getItem(localStorageKey));
-  todos[todo.id] = todo;
-  // save to local storage
+let setTodos = (todos) => {
   localStorage.setItem(localStorageKey, JSON.stringify(todos));
-
-  // simulate async
-  setTimeout(() => {
-    TodoActions.finishSavingTodos(todos);
-  }, 0);
 }
 
 
-export default {
-  getAllTodos,
-  formatTodo,
-  saveTodo
-}
+let TodoUtils = {
+
+  getAllTodos: () => {
+    let todos =  getTodos();
+    return todos;
+  },
+
+  /**
+   * Creates a todo item for storage
+   */
+  formatTodo: (title) => {
+    var id = +new Date();
+    var todo = {
+      id,
+      title
+    }
+    return todo;
+  },
+
+  /**
+   * saves a todo to local storage
+   */
+  saveTodo: (todo) => {
+    let todos =  getTodos();
+    todos[todo.id] = todo;
+    // save to local storage
+    setTodos(todos);
+
+    // simulate async
+    setTimeout(() => {
+      TodoActions.finishSavingTodos(todos);
+    }, 0);
+  },
+
+  deleteTodo: (id) => {
+    let todos =  getTodos();
+    delete todos[id];
+    setTodos(todos);
+    console.log("localstorage?", todos);
+
+    // simulate async
+    setTimeout(() => {
+      TodoActions.finishSavingTodos(todos);
+    }, 0);
+  }
+};
+
+
+export default TodoUtils
