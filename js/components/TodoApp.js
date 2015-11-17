@@ -8,6 +8,7 @@ import TodoActions from '../actions/TodoActions';
 class TodoApp extends React.Component {
   constructor () {
     super();
+    // load todos from storage
     TodoActions.getTodos()
     // change this out when we use a store
     this.state = {
@@ -24,39 +25,25 @@ class TodoApp extends React.Component {
     TodoStore.removeChangeListener(this._onChange.bind(this));
   }
 
+  /**
+   * get new state from Store
+   */
   _onChange() {
     this.setState(TodoStore.getState());
   }
 
   _onSave (text) {
-    // create a new todo (don;t save empty todos)
     if (text.trim()) {
-      var todo = {
-        id: this.idCounter++,
-        title: text
-      }
-
-      var todos = this.state.todos;
-      todos.push(todo);
-
-      this.setState({
-        todos: todos
-      })
+      TodoActions.create(text);
     }
   }
 
   _onDelete (todoItem) {
-    var todos = this.state.todos.filter(todo => {
-      return todo.id !== todoItem.id;
-    });
-
-    this.setState({
-      todos: todos
-    })
+    TodoActions.destroy(todoItem.id);
   }
 
   render () {
-    console.log("NEW TODO APP");
+    console.log("NEW TODO APP", Array.isArray(this.state.todos));
     return (
       <div>
         <TodoInput 

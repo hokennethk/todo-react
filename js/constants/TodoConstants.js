@@ -8,7 +8,8 @@ var constants = [
   'TODO_SAVE_TODOS',
   'TODO_CREATE',
   'TODO_DESTROY',
-  'TODO_UPDATE_TEXT'
+  'TODO_UPDATE_TITLE',
+  'TODO_FINISH_SAVING'
 ];
 
 // like keymirror

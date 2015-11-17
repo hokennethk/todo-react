@@ -16,11 +16,11 @@ let setTodos = (data) => {
   console.log('getting todos', _todos);
 }
 
-let create = (text) => {
+let create = (title) => {
   var id = +new Date();
   _todos[id] = {
     id,
-    text
+    title
   };
 }
 
@@ -41,11 +41,13 @@ let update = (id, updatedTodo) => {
 let TodoStore = Object.assign({}, EventEmitter.prototype, {
 
   getState() {
+    console.log("todostroe", _todos);
     return _todos;
   },
 
   emitChange() {
     this.emit(CHANGE_EVENT);
+    console.log("store after emitting change", _todos);
   },
 
   addChangeListener(callback) {
@@ -61,11 +63,22 @@ let TodoStore = Object.assign({}, EventEmitter.prototype, {
 
 AppDispatcher.register(function(action) {
   switch(action.actionType) {
+
     case TodoConstants.TODO_GET_TODOS:
-      console.log("store called");
       setTodos(action.todos);
       TodoStore.emitChange();
       break;
+
+    case TodoConstants.TODO_CREATE:
+      create(action.title);
+      TodoStore.emitChange();
+      break;
+
+    case TodoConstants.TODO_DESTROY:
+      destroy(action.id);
+      TodoStore.emitChange();
+      break;
+
     default:
       // nothing
   }
