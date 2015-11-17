@@ -47,7 +47,7 @@ class TodoApp extends React.Component {
     return (
       <div>
         <TodoInput 
-          className="input"
+          className="input__header"
           placeholder="What do you need to do?"
           onSave={ this._onSave.bind(this) }
           />

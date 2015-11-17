@@ -50,6 +50,7 @@ class TodoItem extends React.Component {
 
     if (this.state.editMode) {
       editTodo = <TodoInput 
+                    className="input__edit"
                     value={ todo.title }
                     onSave={ this.saveHandler.bind(this) }
                   />
@@ -57,27 +58,33 @@ class TodoItem extends React.Component {
 
     return (
       <li
+        onClick = { this._toggleComplete.bind(this) }
         className={classNames({
           editing: this.state.editMode
-        })}
+        }, 
+        "todoitem")}
       >
-        <input
-          className="toggle"
-          type="checkbox"
-          checked={todo.complete}
-          onChange={ this._toggleComplete.bind(this) }
-        />
-        { todo.title }
-        <button onClick={ this.editHandler.bind(this) }>edit</button>
-        <button onClick={ this.removeHandler.bind(this) }>remove</button>
-        {editTodo}
+        <div className="itemView">
+          <input
+            className="toggle"
+            type="checkbox"
+            checked={todo.complete}
+            onChange={ this._toggleComplete.bind(this) }
+          />
+          <label className={classNames({editing:this.state.editMode})} >
+            { todo.title }
+          </label>
+          <button className= "btn btn__edit" onClick={ this.editHandler.bind(this) }>edit</button>
+          <button className= "btn btn__remove" onClick={ this.removeHandler.bind(this) }>remove</button>
+          {editTodo}
+        </div>
       </li>
     );
   }
 }
 
 TodoItem.propTypes = {
-  todo: React.PropTypes.object.isRequired,
+  todo: React.PropTypes.object.isRequired
 }
 
 export default TodoItem;

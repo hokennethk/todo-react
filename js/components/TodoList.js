@@ -13,11 +13,12 @@ class TodoList extends React.Component {
     var todos = this.props.todos;
     console.log("NEW LIST", todos);
     return (
-    <ul>
+    <ul className="todolist">
       { Object.keys(todos)
         .map(todoKey => <TodoItem key={todoKey}
                                todo={todos[todoKey]} 
-                               onDelete={ this.props.onDelete.bind(this) }/>) }
+                               onDelete={ this.props.onDelete.bind(this) }
+                        />) }
     </ul>
     );
   }
